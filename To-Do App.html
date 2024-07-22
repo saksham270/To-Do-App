@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.todo-list {
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    margin: 0 0 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button.delete {
+    background-color: #dc3545;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-list">
+            <div class="row">
+                <h1>Task List</h1>
+                <input type="text" id="input" placeholder="Add your task">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="list"></ul>
+        </div>
+    </div>
+    <script>
+        const input = document.getElementById("input");
+        const list = document.getElementById("list");
+
+        function addTask() {
+            if (input.value === "") {
+                alert("Please enter a task");
+            } else {
+                const li = document.createElement("li");
+                li.textContent = input.value;
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = function () {
+                    list.removeChild(li);
+                };
+
+                li.appendChild(deleteButton);
+                list.appendChild(li);
+            }
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
